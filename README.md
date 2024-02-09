@@ -1,2 +1,10 @@
 # IphoneUtils
-IphoneUtils is an open-source project aimed at enhancing the user experience for iPhone users by providing a collection of utilities.
+
+IphoneUtils is a collection of utilities for iPhone users, designed to enhance the user experience by providing convenient tools and features.
+
+## Features
+
+### 1. Multi-Object Copy-Paste
+
+IphoneUtils allows users to copy and paste multiple objects effortlessly, streamlining the copy-paste workflow for improved productivity.
+

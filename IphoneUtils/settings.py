@@ -41,9 +41,12 @@ BASE_APPS = [
     "django.contrib.staticfiles",
 ]
 
-THIRD_PARTY_APPS = ["rest_framework", ]
+THIRD_PARTY_APPS = ["rest_framework", 
+                    "crispy_forms",
+                    "rest_framework.authtoken"]
 
-MY_APPS = ["shortcuts", ]
+MY_APPS = ["shortcuts", 
+           "register"]
 
 INSTALLED_APPS = BASE_APPS + THIRD_PARTY_APPS + MY_APPS
 
@@ -134,3 +137,13 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+CRISPY_TEMPLATE_PACK="bootstrap4"
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ]
+}

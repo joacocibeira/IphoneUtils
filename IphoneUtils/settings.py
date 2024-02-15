@@ -42,7 +42,6 @@ BASE_APPS = [
 ]
 
 THIRD_PARTY_APPS = ["rest_framework", 
-                    "crispy_forms",
                     "rest_framework.authtoken"]
 
 MY_APPS = ["shortcuts", 
@@ -86,14 +85,7 @@ WSGI_APPLICATION = "IphoneUtils.wsgi.application"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env('DB_NAME'),
-        'USER': env('DB_USERNAME'),
-        'PASSWORD': env('DB_PASSWORD'),
-        'HOST': env('DB_HOST'),
-        'PORT': env('DB_PORT')
-    }
+    'default':  env.db()
 }
 
 
@@ -147,3 +139,14 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ]
 }
+
+CELERY_BROKER_URL = env('CELERY_BROKER_URL', default='redis://redis:6379/0')
+CELERY_RESULT_BACKEND = env('CELERY_RESULT_BACKEND', default='redis://redis:6379/0')
+
+EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST='smtp.gmail.com'
+EMAIL_PORT=587
+DEFAULT_FROM_EMAIL='IphoneUtils'
+EMAIL_USE_TLS=True
+EMAIL_HOST_USER=env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD=env('EMAIL_HOST_PASSWORD')

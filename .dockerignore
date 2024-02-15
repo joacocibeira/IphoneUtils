@@ -1,0 +1,47 @@
+# Exclude version control files
+.git
+.gitignore
+
+# Exclude development and test files
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+*.log
+db.sqlite3
+
+# Exclude Docker-related files
+Dockerfile*
+.dockerignore
+
+# Exclude project-specific files and directories
+media/
+static/
+node_modules/
+*.env
+*.pyc
+*.pyo
+
+# Exclude system and temporary files
+*.DS_Store
+Thumbs.db
+.vscode/
+__MACOSX/
+
+# Exclude common development tools
+venv/
+env/
+pipenv/
+poetry.lock
+pyproject.toml
+
+# Exclude IDE-specific files
+.idea/
+*.iml
+*.pyc
+*.pyo
+
+# Exclude test files and directories
+tests/

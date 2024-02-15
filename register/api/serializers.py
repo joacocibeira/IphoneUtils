@@ -38,7 +38,7 @@ class RegisterSerializer(UserSerializer):
         
         user.set_password(validated_data['password'])
         user.save()
-        welcome_email.delay(user.email)
+        welcome_email.delay(user.email, user.username)
 
         return user
 

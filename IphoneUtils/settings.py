@@ -42,7 +42,8 @@ BASE_APPS = [
 ]
 
 THIRD_PARTY_APPS = ["rest_framework", 
-                    "rest_framework.authtoken"]
+                    "rest_framework.authtoken",
+                    "drf_yasg"]
 
 MY_APPS = ["shortcuts", 
            "register"]
@@ -124,6 +125,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = "static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -150,3 +153,4 @@ DEFAULT_FROM_EMAIL='IphoneUtils'
 EMAIL_USE_TLS=True
 EMAIL_HOST_USER=env('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD=env('EMAIL_HOST_PASSWORD')
+

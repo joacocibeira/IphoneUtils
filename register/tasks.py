@@ -5,7 +5,7 @@ from celery.utils.log import get_task_logger
 logger = get_task_logger(__name__)
 
 @shared_task
-def welcome_email(email):
+def welcome_email(email, username):
     logger.info("Welcome email sent")
-    return send_welcome_email(email)
+    return send_welcome_email(email, username)
     

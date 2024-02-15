@@ -1,17 +1,26 @@
-from django.template import Context
-from django.template.loader import render_to_string
-from django.core.mail import EmailMessage
+from django.core.mail import EmailMultiAlternatives
+from django.template import loader
 from django.conf import settings
+from django.utils.html import strip_tags
 
-
-def send_welcome_email(email):
+def send_welcome_email(email, username):
     context = {
-        'email': email
+        'email': email,
+        'username': username
     }
 
     email_subject = 'Welcome to IphoneUtils'
-    email_body = render_to_string('email_message.txt', context)
+    
+    # Render the HTML template using Django's loader
+    html_email_body = loader.render_to_string('register/email_message.html', context)
+    plain_email_body = strip_tags(html_email_body)
+    # Create an EmailMessage instance
+    email = EmailMultiAlternatives(subject=email_subject, 
+                                   body=plain_email_body, 
+                                   from_email=settings.DEFAULT_FROM_EMAIL, 
+                                   to=[email])
 
-    email = EmailMessage(email_subject, email_body, settings.DEFAULT_FROM_EMAIL, [email],)
+    email.attach_alternative(html_email_body, 'text/html')
 
+    # Send the email
     return email.send(fail_silently=False)

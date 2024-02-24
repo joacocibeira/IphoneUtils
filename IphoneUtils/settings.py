@@ -44,7 +44,8 @@ BASE_APPS = [
 
 THIRD_PARTY_APPS = ["rest_framework", 
                     "rest_framework.authtoken",
-                    "drf_yasg"]
+                    "drf_yasg",
+                    "drf_spectacular",]
 
 MY_APPS = ["shortcuts", 
            "register"]
@@ -143,7 +144,12 @@ CRISPY_TEMPLATE_PACK="bootstrap4"
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
-    ]
+    ],
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema'
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'IphoneUtils',
 }
 
 CELERY_BROKER_URL = env('CELERY_BROKER_URL', default='redis://redis:6379/0')

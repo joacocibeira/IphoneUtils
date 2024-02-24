@@ -7,6 +7,7 @@ from rest_framework.generics import get_object_or_404
 from .serializers import RegisterSerializer, UserSerializer
 from ..tasks import welcome_email
 from rest_framework.permissions import AllowAny
+from drf_spectacular.utils import extend_schema
 
 
 class RegisterView(generics.CreateAPIView):
@@ -21,6 +22,7 @@ class LoginView(APIView):
     """
     API view for user login.
     """
+    @extend_schema(responses=UserSerializer)
     def post(self, request, *args, **kwargs):
         """
         Handles user login and returns a token if successful.

@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
+from drf_spectacular.utils import extend_schema
 
 
 class ClipboardQueueAPIView(APIView):
@@ -18,6 +19,7 @@ class ClipboardQueueAPIView(APIView):
     authentication_classes = (TokenAuthentication, )  # Token-based authentication required
     permission_classes = (IsAuthenticated, )  # Permission for authenticated users only
 
+
     def get(self, request):
         """
         Handles the GET request to retrieve the next item from the clipboard queue.
@@ -25,6 +27,7 @@ class ClipboardQueueAPIView(APIView):
         item = ClipboardQueue.pop(request.user)  # Pop the next item from the clipboard queue for the user
         return Response({'item': item}, status=status.HTTP_200_OK)
 
+    @extend_schema(responses=ClipboardQueueSerializer)
     def post(self, request):
         """
         Handles the POST request to add an item to the clipboard queue.
